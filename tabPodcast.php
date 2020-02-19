@@ -11,17 +11,27 @@ $rss = Feed::loadRss("http://radiofrance-podcast.net/podcast09/rss_14312.xml");
     </head>
     <body>
         <table>
+            <tbody>
+            <tr>
+                <th>Date</th>
+                <th>Titre</th>
+                <th>Lecteur MP3</th>
+                <th>Durree</th>
+                <th>Download</th>
+            <tr>
                 <?php
                 foreach ($rss->item as $item) {
+                    $audio = $item->enclosure->attributes();
                     echo '<tr>';
-                    echo '<h3>Title: ', $item->title, '</h3><br>';
-                    echo 'Link: ', $item->link, '<br>';
-                    echo 'Timestamp: ', $item->timestamp, '<br>';
-                    echo 'Description ', $item->description, '<br>';
-                    echo 'HTML encoded content: ', $item->{'content:encoded'}, '<br>';
-                    echo '</tr>';
+                    echo '<td>', $item->pubDate, '</td>';
+                    echo '<td><h3><a href ="',$item->link,'">', $item->title, '</a>', '</h3></td>';
+                    echo '<td><audio controls><source src="', $audio->url, '" type=', $audio->type, '></audio></td>';
+                    echo '<td>', $item->{"itunes:duration"}, '</td>';
+                    echo '<td><a href ="',$audio->url,'"download>-->Ici<--</a></td></tr>';
                 }
                  ?>
+
+             </tbody>
         </table>
     </body>
 </html>
