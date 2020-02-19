@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 require_once('tp3-helpers.php');
-$data = json_decode(tmdbget("movie/".$_GET['film_key']), TRUE);
+$data = json_decode(tmdbget("movie/".$_GET['film_key'],['language' => 'fr']), TRUE);
 ?>
 <html lang="en" dir="ltr">
   <head>
@@ -11,7 +11,7 @@ $data = json_decode(tmdbget("movie/".$_GET['film_key']), TRUE);
   <body>
     <h2>Titre du film : <?php echo $data["title"]?></h2>
     <h4>Titre original : <?php echo $data["original_title"]?></h4>
-    <h4>Tag : <?php echo ($data["tagline"]!=NULL ? $data["original_title"] : "Aucun")?></h4>
+    <h4>Tag : <?php echo ($data["tagline"]!=NULL ? $data["tagline"] : "Aucun")?></h4>
     <h4>Description :</h4>
     <p><?php echo $data["overview"]?></p>
     <h5>Retrouver plus d'information : <a href="<?php echo $data["homepage"]?>">ICI</a></h4>
