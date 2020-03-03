@@ -9,11 +9,11 @@ function afficheDataFilmBis($data,$id,$langue="en") {
     echo "<td>";
     $actors = get_actors($id);
     foreach ($actors as $actor) {
-        echo "<p>",$actor["character"],"</p>";
+        echo "<p id='a'>",$actor["character"],"</p>";
     }
     echo "</td><td>";
     foreach ($actors as $actor) {
-        echo "<p><a href='filmography.php?acteur_id=",$actor["id"],"'>",$actor["name"],"</a></p>";
+        echo "<p id='a'><a href='filmography.php?acteur_id=",$actor["id"],"'>",$actor["name"],"</a></p>";
     }
     echo "</td>";
 }
