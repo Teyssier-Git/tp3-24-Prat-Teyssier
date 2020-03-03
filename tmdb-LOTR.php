@@ -13,7 +13,7 @@ function afficheDataFilmBis($data,$id,$langue="en") {
     }
     echo "</td><td>";
     foreach ($actors as $actor) {
-        echo "<p>",$actor["name"],"</p>";
+        echo "<p><a href='filmography.php?acteur_id=",$actor["id"],"'>",$actor["name"],"</a></p>";
     }
     echo "</td>";
 }
