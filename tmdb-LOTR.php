@@ -2,10 +2,20 @@
 <?php
 require_once('tp3-helpers.php');
 
-function afficheDataFilmBis($data,$langue="en") {
+function afficheDataFilmBis($data,$id,$langue="en") {
     echo "<td>",$data["title"],"</td>";
     echo "<td>",$data["release_date"],"</td>";
     echo "<td><img src='https://image.tmdb.org/t/p/w300/",$data["poster_path"],"'></td>";
+    echo "<td>";
+    $actors = get_actors($id);
+    foreach ($actors as $actor) {
+        echo "<p>",$actor["character"],"</p>";
+    }
+    echo "</td><td>";
+    foreach ($actors as $actor) {
+        echo "<p>",$actor["name"],"</p>";
+    }
+    echo "</td>";
 }
 
 ?>
@@ -21,13 +31,14 @@ function afficheDataFilmBis($data,$langue="en") {
                   <th>Titre</th>
                   <th>Date de sortie</th>
                   <th>Poster</th>
-                  <!-- <th>Acteurs</th> -->
+                  <th>Roles</th>
+                  <th>Acteurs</th>
               </tr>
               <?php
                 $ids = get_films_by_title_and_director("the lord of the ring","Peter Jackson");
                 foreach ($ids as $id) {
                   echo "<tr>";
-                  afficheDataFilmBis(json_decode(tmdbget("movie/".$id,['language' => 'en']), TRUE));
+                  afficheDataFilmBis(json_decode(tmdbget("movie/".$id,['language' => 'en']), TRUE),$id);
                   echo "</tr>";
                 }
                ?>

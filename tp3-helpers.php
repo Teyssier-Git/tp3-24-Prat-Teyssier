@@ -58,6 +58,12 @@ function get_films_by_title_and_director($title, $director_name){
     }
     return $films_data;
 }
+
+function get_actors($id) {
+    $cdata = json_decode(tmdbget("movie/".$id."/credits"), TRUE);
+    return $cdata["cast"];
+}
+
  function afficheDataFilm($data) {
      echo "<h2>Titre du film : ",$data["title"],"</h2>";
      echo "<h4>Titre original : ",$data["original_title"],"</h4>";

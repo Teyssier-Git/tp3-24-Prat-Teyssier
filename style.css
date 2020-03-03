@@ -7,3 +7,9 @@ table , tr , td , th {
 th {
     background-color: grey;
 }
+
+p {
+    border-bottom-color: black;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
