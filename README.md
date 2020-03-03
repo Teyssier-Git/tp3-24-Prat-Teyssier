@@ -1,22 +1,4 @@
-# PHP
-
-## TP1
-___
-*RAS*
-
-## TP2
-___
-### Filtres Unix
-* Utilisation de cette commande pour compter le nombre de point d'acces différent :
->```bash
-> $ cat borneswifi_EPSG4326_20171004.csv | cut -d , > -f 2 |uniq |wc -l
->```
-* **Uniq -c** nombre d'occurence de chaque ligne, **sort** pour trié en fonction de ce nombre
-* **count()** est egal à length() en php
-
-## TP3
-___
-### TMDB, Podcasts
+# TMDB, Podcasts
 
 #### TMDB 
 ##### I/ Mise en jambe
