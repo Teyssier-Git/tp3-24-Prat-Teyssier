@@ -45,3 +45,30 @@ function smartcurl($url) {
      echo "<h5>Retrouver plus d'information : <a href='",$data["homepage"],"'>ICI</a></h4>";
      echo "<img src='https://image.tmdb.org/t/p/w300/",$data["poster_path"],"'>";
  }
+
+ function afficheTableId($id) {
+     $data_fr = json_decode(tmdbget("movie/".$id,['language' => 'fr']), TRUE);
+     $data_en = json_decode(tmdbget("movie/".$id,['language' => 'en']), TRUE);
+     $vo = $data_en['original_language'];
+     $data_vo = json_decode(tmdbget("movie/".$id,['language' => "$vo"]), TRUE);
+     echo "<table>";
+     echo "<tbody>";
+     echo "<tr>";
+     echo "<th>VO</th>";
+     echo "<th>FR</th>";
+     echo "<th>EN</th>";
+     echo "</tr>";
+     echo "<tr>";
+     echo "<td>";
+     afficheDataFilm($data_vo);
+     echo "</td>";
+     echo "<td>";
+     afficheDataFilm($data_fr);
+     echo "</td>";
+     echo "<td>";
+     afficheDataFilm($data_en);
+     echo "</td>";
+     echo "</tr>";
+     echo "</tbody>";
+     echo "</table>";
+ }
