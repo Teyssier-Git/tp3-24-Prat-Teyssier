@@ -36,6 +36,11 @@ function smartcurl($url) {
     return [$rawcontent, $info];
 }
 
+function get_filmographie($acteur_id){
+  $castData = json_decode(tmdbget("person/".$acteur_id."/movie_credits"), TRUE);
+  return $castData['cast'];
+}
+
 function get_film_director($film_id){
   $castData = json_decode(tmdbget("movie/".$film_id."/credits"), TRUE);
   $i = 0;
