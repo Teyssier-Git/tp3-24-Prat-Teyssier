@@ -24,10 +24,11 @@ function afficheDataFilmBis($data,$langue="en") {
                   <!-- <th>Acteurs</th> -->
               </tr>
               <?php
-                for ($id=120; $id<123; $id++) {
-                    echo "<tr>";
-                    afficheDataFilmBis(json_decode(tmdbget("movie/".$id,['language' => 'en']), TRUE));
-                    echo "</tr>";
+                $ids = get_films_by_title_and_director("the lord of the ring","Peter Jackson");
+                foreach ($ids as $id) {
+                  echo "<tr>";
+                  afficheDataFilmBis(json_decode(tmdbget("movie/".$id,['language' => 'en']), TRUE));
+                  echo "</tr>";
                 }
                ?>
           </tbody>
