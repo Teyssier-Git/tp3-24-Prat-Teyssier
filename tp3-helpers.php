@@ -36,13 +36,17 @@ function smartcurl($url) {
     return [$rawcontent, $info];
 }
 
- function afficheDataFilm($data) {
+function creationDeLien($id,$langue) {
+    return "https://www.themoviedb.org/movie/".$id."?language=".$langue;
+}
+
+ function afficheDataFilm($data,$langue="en") {
      echo "<h2>Titre du film : ",$data["title"],"</h2>";
      echo "<h4>Titre original : ",$data["original_title"],"</h4>";
      echo "<h4>Tag : ",($data["tagline"]!=NULL ? $data["tagline"] : "Aucun"),"</h4>";
      echo "<h4>Description :</h4>";
      echo "<p>",$data["overview"],"</p>";
-     echo "<h5>Retrouver plus d'information : <a href='",$data["homepage"],"'>ICI</a></h4>";
+     echo "<h5>Retrouver plus d'information : <a href='",creationDeLien($data["id"],$langue),"'>ICI</a></h4>";
      echo "<img src='https://image.tmdb.org/t/p/w300/",$data["poster_path"],"'>";
  }
 
@@ -60,10 +64,10 @@ function smartcurl($url) {
      echo "</tr>";
      echo "<tr>";
      echo "<td>";
-     afficheDataFilm($data_vo);
+     afficheDataFilm($data_vo,$vo);
      echo "</td>";
      echo "<td>";
-     afficheDataFilm($data_fr);
+     afficheDataFilm($data_fr,"fr");
      echo "</td>";
      echo "<td>";
      afficheDataFilm($data_en);
@@ -72,3 +76,5 @@ function smartcurl($url) {
      echo "</tbody>";
      echo "</table>";
  }
+
+ 
