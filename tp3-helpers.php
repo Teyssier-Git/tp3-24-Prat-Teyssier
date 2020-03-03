@@ -36,17 +36,35 @@ function smartcurl($url) {
     return [$rawcontent, $info];
 }
 
-function creationDeLien($id,$langue) {
-    return "https://www.themoviedb.org/movie/".$id."?language=".$langue;
+function get_film_director($film_id){
+  $castData = json_decode(tmdbget("movie/".$film_id."/credits"), TRUE);
+  $i = 0;
+  $current_cast = $castData['crew'][$i];
+  while ($current_cast['job'] != "Director" && isset($current_cast)) {
+    $i++;
+    $current_cast = $castData['crew'][$i];
+  }
+  return $current_cast;
 }
 
- function afficheDataFilm($data,$langue="en") {
+function get_films_by_title_and_director($title, $director_name){
+    str_replace(' ','+',$title);
+    $data = json_decode(tmdbget("search/movie/",['query' => $title]), TRUE);
+    $films_data = array();
+    foreach ($data['results'] as $film) {
+      if(strcmp(get_film_director($film["id"])['name'],$director_name)==0){
+          array_push($films_data, $film['id']);
+      }
+    }
+    return $films_data;
+}
+ function afficheDataFilm($data) {
      echo "<h2>Titre du film : ",$data["title"],"</h2>";
      echo "<h4>Titre original : ",$data["original_title"],"</h4>";
      echo "<h4>Tag : ",($data["tagline"]!=NULL ? $data["tagline"] : "Aucun"),"</h4>";
      echo "<h4>Description :</h4>";
      echo "<p>",$data["overview"],"</p>";
-     echo "<h5>Retrouver plus d'information : <a href='",creationDeLien($data["id"],$langue),"'>ICI</a></h4>";
+     echo "<h5>Retrouver plus d'information : <a href='",$data["homepage"],"'>ICI</a></h4>";
      echo "<img src='https://image.tmdb.org/t/p/w300/",$data["poster_path"],"'>";
  }
 
@@ -64,10 +82,10 @@ function creationDeLien($id,$langue) {
      echo "</tr>";
      echo "<tr>";
      echo "<td>";
-     afficheDataFilm($data_vo,$vo);
+     afficheDataFilm($data_vo);
      echo "</td>";
      echo "<td>";
-     afficheDataFilm($data_fr,"fr");
+     afficheDataFilm($data_fr);
      echo "</td>";
      echo "<td>";
      afficheDataFilm($data_en);
@@ -76,5 +94,3 @@ function creationDeLien($id,$langue) {
      echo "</tbody>";
      echo "</table>";
  }
-
- 

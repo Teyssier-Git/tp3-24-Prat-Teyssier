@@ -10,9 +10,6 @@ require_once('tp3-helpers.php');
   <body>
       <?php
       afficheTableId($_GET['film_key']);
-      for ($i = 120; $i<123; $i++) {
-          afficheTableId($i);
-      }
       ?>
   </body>
 </html>
