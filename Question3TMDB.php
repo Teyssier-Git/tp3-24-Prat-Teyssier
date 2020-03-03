@@ -29,6 +29,7 @@ $data_vo = json_decode(tmdbget("movie/".$_GET['film_key'],['language' => "$vo"])
                 echo "<h4>Description :</h4>";
                 echo "<p>",$data["overview"],"</p>";
                 echo "<h5>Retrouver plus d'information : <a href='",$data["homepage"],"'>ICI</a></h4>";
+                echo "<img src='https://image.tmdb.org/t/p/w300/",$data["poster_path"],"'>";
                 echo "</td>";
                 $data = $data_fr;
                 echo "<td>";
@@ -38,6 +39,7 @@ $data_vo = json_decode(tmdbget("movie/".$_GET['film_key'],['language' => "$vo"])
                 echo "<h4>Description :</h4>";
                 echo "<p>",$data["overview"],"</p>";
                 echo "<h5>Retrouver plus d'information : <a href='",$data["homepage"],"'>ICI</a></h4>";
+                echo "<img src='https://image.tmdb.org/t/p/w300/",$data["poster_path"],"'>";
                 echo "</td>";
                 $data = $data_en;
                 echo "<td>";
@@ -47,6 +49,7 @@ $data_vo = json_decode(tmdbget("movie/".$_GET['film_key'],['language' => "$vo"])
                 echo "<h4>Description :</h4>";
                 echo "<p>",$data["overview"],"</p>";
                 echo "<h5>Retrouver plus d'information : <a href='",$data["homepage"],"'>ICI</a></h4>";
+                echo "<img src='https://image.tmdb.org/t/p/w300/",$data["poster_path"],"'>";
                 echo "</td>";
              ?>
              </tr>
