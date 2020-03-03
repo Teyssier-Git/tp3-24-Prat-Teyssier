@@ -69,13 +69,13 @@ function get_actors($id) {
     return $cdata["cast"];
 }
 
- function afficheDataFilm($data) {
+ function afficheDataFilm($data,$id,$language="en") {
      echo "<h2>Titre du film : ",$data["title"],"</h2>";
      echo "<h4>Titre original : ",$data["original_title"],"</h4>";
      echo "<h4>Tag : ",($data["tagline"]!=NULL ? $data["tagline"] : "Aucun"),"</h4>";
      echo "<h4>Description :</h4>";
      echo "<p>",$data["overview"],"</p>";
-     echo "<h5>Retrouver plus d'information : <a href='",$data["homepage"],"'>ICI</a></h4>";
+     echo "<h5>Retrouver plus d'information : <a href='https://www.themoviedb.org/movie/",$id,"?language=",$language,"'>ICI</a></h4>";
      echo "<img src='https://image.tmdb.org/t/p/w300/",$data["poster_path"],"'>";
  }
 
@@ -93,13 +93,13 @@ function get_actors($id) {
      echo "</tr>";
      echo "<tr>";
      echo "<td>";
-     afficheDataFilm($data_vo);
+     afficheDataFilm($data_vo,$id,$vo);
      echo "</td>";
      echo "<td>";
-     afficheDataFilm($data_fr);
+     afficheDataFilm($data_fr,$id,"fr");
      echo "</td>";
      echo "<td>";
-     afficheDataFilm($data_en);
+     afficheDataFilm($data_en,$id);
      echo "</td>";
      echo "</tr>";
      echo "</tbody>";
