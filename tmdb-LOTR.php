@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <?php
 require_once('tp3-helpers.php');
+require_once('model.php');
+require_once('view_fonction.php');
 
 function afficheDataFilmBis($data,$id,$langue="en") {
     echo "<td>",$data["title"],"</td>";
