@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once('vendor/dg/rss-php/src/Feed.php');
+require_once('Podcaster/vendor/dg/rss-php/src/Feed.php');
 $rss = Feed::loadRss("http://radiofrance-podcast.net/podcast09/rss_14312.xml");
  ?>
 <html lang="en" dir="ltr">
