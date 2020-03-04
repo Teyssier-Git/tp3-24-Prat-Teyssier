@@ -1,12 +1,15 @@
 # TMDB, Podcasts
 ### Instruction d'installation
 #### Installation
+Pour que les pages fonctionne il faut utiliser un serveur. Nous utilisons un serveur apache en plaçant les fichier dans le repertoire
 ##### TMDB
 Pour utiliser Question3TMDB.php il faut rajouter un parametre film_key={film_id} par exemple :
-```url
+```
 Question3TMDB.php?film_key=120
 ```
+Les autres pages s'utilise sans parametre.
 ##### Podcast
+Pas d'instruction particulière.
 #### Les different fichier
 ##### TMDB
 - **minimalUseOfhelpers.php** : pour la question 1
@@ -48,8 +51,29 @@ Question3TMDB.php?film_key=120
   > $data_vo = json_decode(tmdbget("movie/".$id,['language' => "$vo"]), TRUE);
   > $data_vf = json_decode(tmdbget("movie/".$id,['language' => "$vf"]), TRUE);
   >```
-- **5)**
-- **6)**
+- **5)** Les poster sont accessible avec l'url suivante :
+  >```php
+  > https://image.tmdb.org/t/p/w300/$movie_data["poster_path"]
+  >```
+  On peut changer la taille du poster en modifiant la valeur apres w dans cette partie : *.../w300...*
+- **6)** Pour obtenir les film seigneur des anneaux de peter Jackson nous utilsons la possibilité de faire des recherches dans l'api tmdb avec l'attribut dans l'url d'acces *query* ensuite nous faisont un trie en verifiant que Peter Jackson etait bien le realisateur du film. Cette methode est assez peut efficiente car on doit appelé l'API 1 fois par film ce qui ralenti enormement cette page, notre solution est probablement inutilisable avec un parametre *title* trop peut specifique.  
+    >```php
+    >function get_films_by_title_and_director($title, $director_name){
+    >    str_replace(' ','+',$title);
+    >    $data = json_decode(tmdbget("search/movie/",['query' => $title]), TRUE);
+    >    $films_data = array();
+    >    foreach ($data['results'] as $film) {
+    >      if(strcmp(get_film_director($film["id"])['name'],$director_name)==0){
+    >          array_push($films_data, $film['id']);
+    >      }
+    >    }
+    >    return $films_data;
+    >}
+    >```
+    Cette fonction nous renvoie les identifiants des films seigneur des anneaux de Peter Jackson avec un appel comme suit :
+    >```php
+    > $ids = get_films_by_title_and_director("the lord of the ring","Peter Jackson");
+    >```
 - **7)**
 - **8)** Non on ne peut pas afficher tout les acteurs jouant des hobbits car la race n est pas une information fournis, il serais possible de tous les afficher en listant le nom des hobbits et en filtrant les acteur ayant jouer tel ou tel personnage.
 - **9)** Oui c'est relativement simple a faire, nous recuperont tous les acteurs et generons pour chacun un lien vers la page *filmography.php* avec en argument sont identifiant :
