@@ -3,23 +3,6 @@
 require_once('tp3-helpers.php');
 require_once('model.php');
 require_once('view_fonction.php');
-
-function afficheDataFilmBis($data,$id,$langue="en") {
-    echo "<td>",$data["title"],"</td>";
-    echo "<td>",$data["release_date"],"</td>";
-    echo "<td><img src='https://image.tmdb.org/t/p/w300/",$data["poster_path"],"'></td>";
-    echo "<td>";
-    $actors = get_actors($id);
-    foreach ($actors as $actor) {
-        echo "<p id='a'>",$actor["character"],"</p>";
-    }
-    echo "</td><td>";
-    foreach ($actors as $actor) {
-        echo "<p id='a'><a href='filmography.php?acteur_id=",$actor["id"],"'>",$actor["name"],"</a></p>";
-    }
-    echo "</td>";
-}
-
 ?>
 <html lang="en" dir="ltr">
 <head>;
