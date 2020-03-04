@@ -12,19 +12,19 @@
 ##### I/ Mise en jambe
 - **1)** Le format de réponse est du JSON, il s'agit de Fight Club le fameux film de XXXXXX. Avec le paramètre : language=fr on récuprère un contenu en français.
 - **2)** On a tester avec curl :
->```shell
-> curl http://api.themoviedb.org/3/movie/550?api_key=ebb02613ce5a2ae58fde00f4db95a9c1
->```
-Puis on à réaliser un code minimal pour tester les fonction de tp3_helpers.php :
->```php
-><?php
->require_once('tp3-helpers.php');
->printf("Fonction smartcurl : \n\n");
->var_dump(smartcurl($argv[1]));
->printf("\n\n Fonction tmdbget : \n\n");
->var_dump(tmdbget($argv[2]));
-> ?>
->```
+  >```shell
+  > curl http://api.themoviedb.org/3/movie/550?api_key=ebb02613ce5a2ae58fde00f4db95a9c1
+  >```
+  Puis on à réaliser un code minimal pour tester les fonction de tp3_helpers.php :
+  >```php
+  ><?php
+  >require_once('tp3-helpers.php');
+  >printf("Fonction smartcurl : \n\n");
+  >var_dump(smartcurl($argv[1]));
+  >printf("\n\n Fonction tmdbget : \n\n");
+  >var_dump(tmdbget($argv[2]));
+  > ?>
+  >```
   Et nous utiliont ce programme en ligne de commande de la façon suivante :
   >```shell
   >  php minimalUseOfhelpers.php http://api.themoviedb.org/3/movie/550?api_key=ebb02613ce5a2ae58fde00f4db95a9c1 movie/550
@@ -46,8 +46,8 @@ Puis on à réaliser un code minimal pour tester les fonction de tp3_helpers.php
 - **8)** Non on ne peut pas afficher tout les acteurs jouant des hobbits car la race n est pas une information fournis, il serais possible de tous les afficher en listant le nom des hobbits et en filtrant les acteur ayant jouer tel ou tel personnage.
 - **9)**
 - **10)**
-  #### Podcast
-  ##### I/ Mise en jambe
+#### Podcast
+##### I/ Mise en jambe
   Composer ajoute ces fichier : *composer.json  composer.lock  vendor/*
 - **1)** Une methode loadRss nous est fournis par la bibliotheque Composer cette fonction nous permet de recuperer un tableau avec les information de tous les episodes d un podcast ici radio france :
   >```php
