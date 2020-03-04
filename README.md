@@ -10,7 +10,7 @@ Question3TMDB.php?film_key=120
 Les autres pages s'utilise sans parametre.
 ##### Podcast
 Pas d'instruction particulière.
-#### Les different fichier
+#### Les differents fichiers
 ##### TMDB
 - **minimalUseOfhelpers.php** : pour la question 1
 - **Question3TMDB.php** : pour les questions 3, 4, 5 et 10
@@ -74,13 +74,30 @@ Pas d'instruction particulière.
     >```php
     > $ids = get_films_by_title_and_director("the lord of the ring","Peter Jackson");
     >```
-- **7)**
+- **7)** Pour recuperer les acteurs ayant participer à un film on vas les chercher dans les credits en utilisant l'id du film :
+  >```php
+  > function get_actors($id) {
+  > $cdata = json_decode(tmdbget("movie/".$id."/credits"), TRUE);
+  > return $cdata["cast"];
+  > }
+  >```
+
 - **8)** Non on ne peut pas afficher tout les acteurs jouant des hobbits car la race n est pas une information fournis, il serais possible de tous les afficher en listant le nom des hobbits et en filtrant les acteur ayant jouer tel ou tel personnage.
 - **9)** Oui c'est relativement simple a faire, nous recuperont tous les acteurs et generons pour chacun un lien vers la page *filmography.php* avec en argument sont identifiant :
   >```php
   > echo "<p id='a'><a href='filmography.php?acteur_id=",$actor["id"],"'>",$actor["name"],"</a></p>";
   >```
-- **10)**
+- **10)** Une fonction nous renvois l'id sur youtube du trailer du film representé par son id :
+  >```php
+  > function get_youtube_id($movie_id){
+  >   $video_data = json_decode(tmdbget("movie/".$movie_id."/videos"), TRUE);
+  >   return $video_data['results'][0]['key'];
+  > }
+  >```
+  Ensuite nous inseront un iframe de youtube pour avoir le trailer accessible depuis notre page :
+  >```HTML
+  > <iframe width="300" height="170" src="https://www.youtube.com/embed/$youtube_id" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  >```
 #### Podcast
 ##### I/ Mise en jambe
   Composer ajoute ces fichier : *composer.json  composer.lock  vendor/*

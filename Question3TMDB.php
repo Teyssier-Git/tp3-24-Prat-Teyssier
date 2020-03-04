@@ -5,7 +5,7 @@ require_once('model.php');
 require_once('view_fonction.php');
 ?>
 <html lang="en" dir="ltr">
-<head>;
+<head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
